@@ -93,10 +93,14 @@ namespace HW10MyList
 
         IEnumerator IEnumerable.GetEnumerator()
         {
-            return _instance.GetEnumerator();
+            for (int i = 0; i < Count; i++)
+            {
+                yield return _instance[i];
+            }
+
+            // return _instance.GetEnumerator();
         }
 
-        // return new MyEnumerator1<T>(_instance);
         public IEnumerator<T> GetEnumerator()
         {
             foreach (T c in _instance)
