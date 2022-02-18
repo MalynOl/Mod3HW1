@@ -7,13 +7,27 @@ using System.Threading.Tasks;
 
 namespace HW10MyList
 {
-    public class MyList<T> : IMyList<T>, IComparable<T>
+    public class MyList<T> : IMyList<T>
     {
         private T[] _instance;
 
         public MyList(T[] mas)
         {
             _instance = mas;
+        }
+
+        public int Count => _instance.Length;
+
+        public T this[int index]
+        {
+            get
+            {
+                return _instance[index];
+            }
+            set
+            {
+                _instance[index] = value;
+            }
         }
 
         public void Add(T addItem)
@@ -79,17 +93,16 @@ namespace HW10MyList
 
         IEnumerator IEnumerable.GetEnumerator()
         {
-            return new MyEnumerator<T>(_instance);
+            return _instance.GetEnumerator();
         }
 
+        // return new MyEnumerator1<T>(_instance);
         public IEnumerator<T> GetEnumerator()
         {
-            return new MyEnumerator<T>(_instance);
-        }
-
-        public int CompareTo(T? other)
-        {
-            throw new NotImplementedException();
+            foreach (T c in _instance)
+            {
+                yield return c;
+            }
         }
     }
 }

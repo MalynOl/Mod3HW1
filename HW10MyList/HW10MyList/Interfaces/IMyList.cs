@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace HW10MyList
 {
-    public interface IMyList<T> : IEnumerable<T>
+    public interface IMyList<T> : IReadOnlyList<T>
     {
         public void Add(T addItem);
 
